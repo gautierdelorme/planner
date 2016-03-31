@@ -1,0 +1,9 @@
+{
+  "firebase": "planner31",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
