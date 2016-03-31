@@ -1,3 +1,9 @@
+// app/controllers/PlannerCtrl.js
+
+/**
+  * Planner controller: in charge of the planner smartness
+**/
+
 angular.module('planner').controller('PlannerCtrl', PlannerCtrl);
 
 function PlannerCtrl(EventService, SharedService) {

@@ -1,3 +1,9 @@
+// app/services/SharedService.js
+
+/**
+  * Shared service: in charge of sharing datas between controllers
+**/
+
 angular.module('planner').factory('SharedService', SharedService);
 
 

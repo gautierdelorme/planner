@@ -1,4 +1,11 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+// app/app.js
+
+/**
+  * Require all the app dependencies
+  * Create the main module of the app
+**/
+
 require('angular-material')
 require('angularfire')
 require('firebase')
@@ -9,6 +16,12 @@ require('./services')
 require('./controllers')
 
 },{"./controllers":5,"./services":8,"angular-material":15,"angularfire":19,"firebase":20}],2:[function(require,module,exports){
+// app/controllers/MainCtrl.js
+
+/**
+  * Main controller of the app
+**/
+
 angular.module('planner').controller('MainCtrl', MainCtrl);
 
 function MainCtrl() {
@@ -16,6 +29,12 @@ function MainCtrl() {
 }
 
 },{}],3:[function(require,module,exports){
+// app/controllers/PlannerCtrl.js
+
+/**
+  * Planner controller: in charge of the planner smartness
+**/
+
 angular.module('planner').controller('PlannerCtrl', PlannerCtrl);
 
 function PlannerCtrl(EventService, SharedService) {
@@ -48,6 +67,12 @@ function PlannerCtrl(EventService, SharedService) {
 }
 
 },{}],4:[function(require,module,exports){
+// app/controllers/SideBarCtrl.js
+
+/**
+  * SideBar controller: in charge of the sidebar responsivness
+**/
+
 angular.module('planner').controller('SideBarCtrl', SideBarCtrl);
 
 function SideBarCtrl(EventService, SharedService, $scope) {
@@ -71,11 +96,23 @@ function SideBarCtrl(EventService, SharedService, $scope) {
 }
 
 },{}],5:[function(require,module,exports){
+// app/controllers/index.js
+
+/**
+  * Require all controllers
+**/
+
 require('./MainCtrl.js');
 require('./SideBarCtrl.js');
 require('./PlannerCtrl.js');
 
 },{"./MainCtrl.js":2,"./PlannerCtrl.js":3,"./SideBarCtrl.js":4}],6:[function(require,module,exports){
+// app/services/EventService.js
+
+/**
+  * Event service: in charge of the communication with Firebase
+**/
+
 angular.module('planner').factory('EventService', EventService);
 
 
@@ -101,6 +138,12 @@ function EventService ($firebaseArray) {
 }
 
 },{}],7:[function(require,module,exports){
+// app/services/SharedService.js
+
+/**
+  * Shared service: in charge of sharing datas between controllers
+**/
+
 angular.module('planner').factory('SharedService', SharedService);
 
 
@@ -118,12 +161,23 @@ function SharedService ($rootScope) {
 }
 
 },{}],8:[function(require,module,exports){
+// app/services/index.js
+
+/**
+  * Require all services
+**/
+
 require('./models')
 
 require('./EventService.js')
 require('./SharedService.js')
 
 },{"./EventService.js":6,"./SharedService.js":7,"./models":9}],9:[function(require,module,exports){
+// app/services/models/index.js
+
+/**
+  * Require all models
+**/
 
 },{}],10:[function(require,module,exports){
 /**

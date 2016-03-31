@@ -1,3 +1,9 @@
+// app/services/EventService.js
+
+/**
+  * Event service: in charge of the communication with Firebase
+**/
+
 angular.module('planner').factory('EventService', EventService);
 
 

@@ -1,3 +1,9 @@
+// app/controllers/SideBarCtrl.js
+
+/**
+  * SideBar controller: in charge of the sidebar responsivness
+**/
+
 angular.module('planner').controller('SideBarCtrl', SideBarCtrl);
 
 function SideBarCtrl(EventService, SharedService, $scope) {
