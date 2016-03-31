@@ -1,8 +1,10 @@
 # planner
 
-**planner** is a demo front-end web app using [Angular Material](https://github.com/angular/material). The purpose of this project is to understand how setup quickly and easily an Angular project with a good architecture.
+**planner** is a demo front-end web app using [Angular Material](https://github.com/angular/material) and [Firebase](https://www.firebase.com/). The purpose of this project is to understand how setup quickly and easily an Angular project with a good architecture.
 
 ## Test the app
+
+Online : [https://planner31.firebaseapp.com/](https://planner31.firebaseapp.com/) or from your computer:
 
 ### Requirements
 Developed with:
@@ -30,6 +32,13 @@ Be sure to have previous requirements installed on your computer.
 - Browserify allows us to use `require()` in our js files like in Node.js but for front-end development. Because of Gulp browserify takes all the required files in the `app/` directory and concatenate them into a single file understandable by browsers in `public/js/`.
     - To use `require('nameOfDirectory')` you must put in the directory a `index.js` file wich contains a `require('file.js')` for each file in the directory. (example in `app/controllers/`)
     - If we don't use browserify the browser cannot understand `require()` statements.
+
+
+- All calls to Firebase must be in a service not a controller (example in `app/services/EventService.js`).
+- To share data between controllers we must use a service and store the shared data and then notify controllers of the update (example in `app/services/SharedService.js`). Do not forget to inject the service in the controller (example in `app/controllers/PlannerCtrl.js`).
+
+
+- To use Firebase hosting juste install Firebase CLI (`npm install -g firebase-tools`) and then run in your project directory `firebase init` and `firebase deploy`.
 
 
 ## Angular best practices
@@ -78,6 +87,7 @@ function PlannerCtrl() {
       time:'10h - 12h',
     }
   ]
+  //...
 }
 ```
 ## License
