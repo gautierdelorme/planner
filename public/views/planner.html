@@ -1,0 +1,10 @@
+<div layout="column" ng-controller="PlannerCtrl as planner">
+  <md-tabs md-stretch-tabs="always">
+      <md-tab flex ng-id="schedule.id" ng-repeat="schedule in planner.schedules">
+        <md-tab-label>{{schedule.time}}</md-tab-label>
+        <md-tab-body>
+          View for Item
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+</div>

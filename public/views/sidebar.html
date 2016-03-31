@@ -1,0 +1,3 @@
+<div layout="column" ng-controller="SideBarCtrl as ctrl">
+  <md-button ng-repeat="day in ctrl.week" ng-disabled="day == 'Monday'">{{day}}</md-button>
+</div>

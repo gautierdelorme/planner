@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="planner">
+  <head>
+    <meta charset="UTF-8">
+    <title>Planner</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
+  </head>
+  <body layout="column" ng-cloak>
+    <md-toolbar class="md-primary"></md-toolbar>
+    <div layout="row">
+      <div ng-include flex="10" src="'views/sidebar.html'"></div>
+      <div ng-include flex src="'views/planner.html'"></div>
+    </div>
+  </body>
+</html>
