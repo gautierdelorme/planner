@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="js/main.js"></script>
   </head>
-  <body layout="column" ng-cloak>
-    <md-toolbar class="md-primary"></md-toolbar>
-    <div layout="row">
+  <body ng-cloak>
+    <div layout-fill layout="row" ng-controller="MainCtrl as main">
       <div ng-include flex="10" src="'views/sidebar.html'"></div>
-      <div ng-include flex src="'views/planner.html'"></div>
+      <div layout-fill ng-include flex src="'views/planner.html'"></div>
     </div>
   </body>
 </html>

@@ -1,6 +1,8 @@
 require('angular-material')
+require('angularfire')
+require('firebase')
 
-angular.module('planner', ['ngMaterial'])
+angular.module('planner', ['ngMaterial', 'firebase'])
 
-require('./controllers')
 require('./services')
+require('./controllers')

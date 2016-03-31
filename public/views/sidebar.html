@@ -1,3 +1,5 @@
-<div layout="column" ng-controller="SideBarCtrl as ctrl">
-  <md-button ng-repeat="day in ctrl.week" ng-disabled="day == 'Monday'">{{day}}</md-button>
+<div layout="column" ng-controller="SideBarCtrl as ctrl" class="md-primary">
+  <h1>{{ctrl.title}}</h1>
+  <md-button ng-click="ctrl.addEvent()" class="md-raised md-primary">Add event (type {{ctrl.currentSchedule}})</md-button>
+  <md-button class="md-primary" ng-repeat="day in ctrl.week" ng-disabled="day == 'Monday'">{{day}}</md-button>
 </div>

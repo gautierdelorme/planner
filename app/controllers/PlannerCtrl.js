@@ -1,6 +1,6 @@
 angular.module('planner').controller('PlannerCtrl', PlannerCtrl);
 
-function PlannerCtrl() {
+function PlannerCtrl(EventService, SharedService) {
   var vm = this;
   vm.schedules = [
     {
@@ -20,4 +20,11 @@ function PlannerCtrl() {
       time:'16h - 18h',
     }
   ]
+  vm.events = EventService.events
+  vm.removeEvent = function(event) {
+    EventService.removeEvent(event)
+  }
+  vm.tabChanged = function(schedule){
+    SharedService.updateCurrentSchedule(schedule.id)
+  }
 }
