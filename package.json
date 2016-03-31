@@ -1,14 +1,18 @@
 {
   "name": "planner",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "A demo front-end web app using Angular Material",
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gautierdelorme/planner.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf ./node_modules/*"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Gautier Delorme",
+  "license": "MIT",
   "devDependencies": {
     "browserify": "^13.0.0",
     "gulp": "^3.9.1",
@@ -20,6 +24,7 @@
     "angular-animate": "^1.5.3",
     "angular-aria": "^1.5.3",
     "angular-material": "^1.0.6",
-    "angular-messages": "^1.5.3"
+    "angular-messages": "^1.5.3",
+    "angularfire": "^1.2.0"
   }
 }
