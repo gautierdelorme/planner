@@ -37,7 +37,7 @@ function MainCtrl() {
 
 angular.module('planner').controller('PlannerCtrl', PlannerCtrl);
 
-function PlannerCtrl(EventService, SharedService) {
+function PlannerCtrl(EventService, SharedService, $mdSidenav) {
   var vm = this;
   vm.schedules = [
     {
@@ -57,6 +57,9 @@ function PlannerCtrl(EventService, SharedService) {
       time:'16h - 18h',
     }
   ]
+  vm.toggleSideMenu = function() {
+    $mdSidenav('left').toggle();
+  }
   vm.events = EventService.events
   vm.removeEvent = function(event) {
     EventService.removeEvent(event)

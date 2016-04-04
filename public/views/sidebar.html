@@ -1,5 +1,18 @@
-<div layout="column" ng-controller="SideBarCtrl as ctrl" class="md-primary">
-  <h1>{{ctrl.title}}</h1>
-  <md-button ng-click="ctrl.addEvent()" class="md-raised md-primary">Add event (type {{ctrl.currentSchedule}})</md-button>
-  <md-button class="md-primary" ng-repeat="day in ctrl.week" ng-disabled="day == 'Monday'">{{day}}</md-button>
+<div ng-controller="SideBarCtrl as ctrl">
+  <md-sidenav class="site-sidenav md-sidenav-left"
+    md-component-id="left"
+    md-is-locked-open="$mdMedia('gt-sm')">
+    <md-toolbar class="md-whiteframe-z1">
+      <h3>{{ctrl.title}}</h3>
+    </md-toolbar>
+    <md-list>
+      <md-list-item>
+        <md-button ng-click="ctrl.addEvent()" class="md-raised md-primary">Add event (type
+          {{ctrl.currentSchedule}})</md-button>
+      </md-list-item>
+      <md-list-item ng-repeat="day in ctrl.week">
+        <md-button class="md-primary" ng-disabled="day == 'Monday'">{{day}}</md-button>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
 </div>
