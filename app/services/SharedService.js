@@ -10,7 +10,7 @@ angular.module('planner').factory('SharedService', SharedService);
 function SharedService ($rootScope) {
   var SharedService = {};
 
-  SharedService.sharedData = false
+  SharedService.currentSchedule = false
 
   SharedService.updateCurrentSchedule = function(schedule) {
     this.currentSchedule = schedule

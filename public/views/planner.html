@@ -5,7 +5,7 @@
     </md-button>
     <h3>Angular Material and Firebase app</h3>
   </md-toolbar>
-  <md-tabs md-dynamic-height md-stretch-tabs="always">
+  <md-tabs md-dynamic-height md-stretch-tabs="{{'always' |isMobile:'never'}}">
     <md-tab label="{{schedule.time}}" ng-id="schedule.id" ng-repeat="schedule in planner.schedules" md-on-select="planner.tabChanged(schedule)">
       <md-content class="md-padding">
         <md-list>

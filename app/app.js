@@ -12,4 +12,5 @@ require('firebase')
 angular.module('planner', ['ngMaterial', 'firebase'])
 
 require('./services')
+require('./filters')
 require('./controllers')
