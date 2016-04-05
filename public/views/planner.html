@@ -1,4 +1,4 @@
-<div flex layout="column" ng-controller="PlannerCtrl as planner">
+<div layout="column" ng-controller="PlannerCtrl as planner">
   <md-toolbar layout="row" class="md-whiteframe-z1">
     <md-button hide-gt-sm ng-click="planner.toggleSideMenu()">
       <i class="material-icons md-36">dehaze</i>
@@ -6,7 +6,7 @@
     <h3>Angular Material and Firebase app</h3>
   </md-toolbar>
   <md-tabs md-dynamic-height md-stretch-tabs="always">
-    <md-tab label="{{schedule.time}}" flex ng-id="schedule.id" ng-repeat="schedule in planner.schedules" md-on-select="planner.tabChanged(schedule)">
+    <md-tab label="{{schedule.time}}" ng-id="schedule.id" ng-repeat="schedule in planner.schedules" md-on-select="planner.tabChanged(schedule)">
       <md-content class="md-padding">
         <md-list>
           <md-subheader>Events</md-subheader>
