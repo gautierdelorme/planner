@@ -3,11 +3,13 @@
     md-component-id="left"
     md-is-locked-open="$mdMedia('gt-sm')">
     <md-toolbar class="md-whiteframe-z1">
-      <h3>{{ctrl.title}}</h3>
+      <md-button ng-href="/">
+        <h3>{{ctrl.title}}</h3>
+      </md-button>
     </md-toolbar>
     <md-list>
       <md-list-item>
-        <md-button ng-click="ctrl.login()" class="md-raised md-warn">Login</md-button>
+        <md-button ng-href="/#/login" class="md-raised md-warn">Login</md-button>
       </md-list-item>
       <md-list-item>
         <md-button ng-click="ctrl.addEvent()" class="md-raised md-primary">Add event (type

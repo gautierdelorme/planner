@@ -68,8 +68,11 @@ function LoginCtrl() {
 
 angular.module('planner').controller('MainCtrl', MainCtrl);
 
-function MainCtrl() {
+function MainCtrl($mdSidenav) {
   var vm = this;
+  vm.toggleSideMenu = function() {
+    $mdSidenav('left').toggle();
+  }
 }
 
 },{}],6:[function(require,module,exports){
@@ -81,7 +84,7 @@ function MainCtrl() {
 
 angular.module('planner').controller('PlannerCtrl', PlannerCtrl);
 
-function PlannerCtrl(EventService, SharedService, $mdSidenav) {
+function PlannerCtrl(EventService, SharedService) {
   var vm = this;
   vm.schedules = [
     {
@@ -101,9 +104,6 @@ function PlannerCtrl(EventService, SharedService, $mdSidenav) {
       time:'16h - 18h',
     }
   ]
-  vm.toggleSideMenu = function() {
-    $mdSidenav('left').toggle();
-  }
   vm.events = EventService.events
   vm.removeEvent = function(event) {
     EventService.removeEvent(event)

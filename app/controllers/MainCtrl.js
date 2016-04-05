@@ -6,6 +6,9 @@
 
 angular.module('planner').controller('MainCtrl', MainCtrl);
 
-function MainCtrl() {
+function MainCtrl($mdSidenav) {
   var vm = this;
+  vm.toggleSideMenu = function() {
+    $mdSidenav('left').toggle();
+  }
 }

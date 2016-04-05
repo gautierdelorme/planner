@@ -9,6 +9,10 @@
    font-weight: 500;
  }
 
+ md-toolbar a h3 {
+   font-size: 36px;
+ }
+
 /* Sidenav button */
 md-sidenav .md-button {
    margin: auto;
