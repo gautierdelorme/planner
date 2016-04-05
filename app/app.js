@@ -8,8 +8,9 @@ require('angular-material')
 require('angularfire')
 require('firebase')
 require('angular-route')
+require('angular-messages')
 
-angular.module('planner', ['ngMaterial', 'firebase', 'ngRoute'])
+angular.module('planner', ['ngMaterial', 'firebase', 'ngRoute', 'ngMessages'])
 
 require('./config')
 require('./services')

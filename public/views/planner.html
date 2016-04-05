@@ -1,10 +1,10 @@
 <div layout="column">
     <md-tabs md-dynamic-height md-stretch-tabs="{{'always' |isMobile:'never'}}">
-        <md-tab label="{{schedule.time}}" ng-id="schedule.id" ng-repeat="schedule in planner.schedules" md-on-select="planner.tabChanged(schedule)">
+        <md-tab label="{{schedule.time}}" ng-id="schedule.id" ng-repeat="schedule in plannerCtrl.schedules" md-on-select="plannerCtrl.tabChanged(schedule)">
             <md-content class="md-padding">
                 <md-list>
                     <md-subheader>Events</md-subheader>
-                    <md-list-item class="md-3-line" ng-repeat="event in planner.events | filter:{type: schedule.id}:true " ng-click="planner.removeEvent(event)">
+                    <md-list-item class="md-3-line" ng-repeat="event in plannerCtrl.events | filter:{type: schedule.id}:true " ng-click="plannerCtrl.removeEvent(event)">
                         <div class="md-list-item-text" layout="column">
                             <h3>{{ event.name }}
                                 - type

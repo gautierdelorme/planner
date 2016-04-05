@@ -5,12 +5,12 @@ function Router($routeProvider) {
   .when('/planner', {
     templateUrl: 'views/planner.html',
     controller: 'PlannerCtrl',
-    controllerAs: 'planner'
+    controllerAs: 'plannerCtrl'
   })
   .when('/login', {
     templateUrl: 'views/login.html',
     controller: 'LoginCtrl',
-    controllerAs: 'login'
+    controllerAs: 'loginCtrl'
   })
   .otherwise({
     redirectTo: '/planner'
