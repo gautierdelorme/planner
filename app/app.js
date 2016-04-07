@@ -13,6 +13,7 @@ require('angular-messages')
 angular.module('planner', ['ngMaterial', 'firebase', 'ngRoute', 'ngMessages'])
 
 require('./config')
+require('./run')
 require('./services')
 require('./filters')
 require('./controllers')

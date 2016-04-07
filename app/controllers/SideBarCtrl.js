@@ -6,7 +6,7 @@
 
 angular.module('planner').controller('SideBarCtrl', SideBarCtrl);
 
-function SideBarCtrl(EventService, SharedService, AuthService, $scope) {
+function SideBarCtrl(EventService, SharedService, AuthService, $scope, $location) {
   var vm = this;
   vm.title = 'PLANNER'
   vm.currentSchedule = false
@@ -24,6 +24,7 @@ function SideBarCtrl(EventService, SharedService, AuthService, $scope) {
 
   vm.logout = function() {
     AuthService.logout()
+    $location.path('/')
   }
 
   $scope.$on('SharedService', function () {

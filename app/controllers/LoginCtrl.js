@@ -6,7 +6,7 @@
 
 angular.module('planner').controller('LoginCtrl', LoginCtrl);
 
-function LoginCtrl(AuthService, NotificationsService) {
+function LoginCtrl(AuthService, NotificationsService, $location) {
   var vm = this;
 
   vm.user = {
@@ -18,6 +18,8 @@ function LoginCtrl(AuthService, NotificationsService) {
     AuthService.login(vm.user.email, vm.user.password, function(error, res) {
       if (error) {
         NotificationsService.error("Error during logging. Please verify your password.");
+      } else {
+        $location.path('/')
       }
     })
   }
@@ -26,6 +28,8 @@ function LoginCtrl(AuthService, NotificationsService) {
     AuthService.signup(vm.user.email, vm.user.password, function(error, res) {
       if (error) {
         NotificationsService.error("Error during signing up. Please try again.");
+      } else {
+        $location.path('/')
       }
     })
   }

@@ -12,6 +12,10 @@ function AuthService($firebaseAuth, $rootScope) {
     AuthService.ref = new Firebase("https://planner31.firebaseio.com/")
     AuthService.auth = $firebaseAuth(AuthService.ref)
 
+    AuthService.requireAuth = function() {
+      return AuthService.auth.$requireAuth()
+    }
+
     AuthService.signup = function(email, password, then) {
         this.auth.$createUser({
             email: email,
