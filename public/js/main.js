@@ -91,17 +91,14 @@ function LoginCtrl(AuthService, NotificationsService) {
     AuthService.login(vm.user.email, vm.user.password, function(error, res) {
       if (error) {
         NotificationsService.error("Error during logging. Please verify your password.");
-      } else {
-        console.log("okay")
       }
     })
   }
+
   vm.signup = function() {
     AuthService.signup(vm.user.email, vm.user.password, function(error, res) {
       if (error) {
         NotificationsService.error("Error during signing up. Please try again.");
-      } else {
-        console.log("okay")
       }
     })
   }
@@ -170,10 +167,11 @@ function PlannerCtrl(EventService, SharedService) {
 
 angular.module('planner').controller('SideBarCtrl', SideBarCtrl);
 
-function SideBarCtrl(EventService, SharedService, $scope) {
+function SideBarCtrl(EventService, SharedService, AuthService, $scope) {
   var vm = this;
   vm.title = 'PLANNER'
   vm.currentSchedule = false
+  vm.userData = null
   vm.week = [
     'Monday',
     'Tuesday',
@@ -185,9 +183,17 @@ function SideBarCtrl(EventService, SharedService, $scope) {
     EventService.addEvent(vm.currentSchedule)
   }
 
+  vm.logout = function() {
+    AuthService.logout()
+  }
+
   $scope.$on('SharedService', function () {
     vm.currentSchedule = SharedService.currentSchedule
-  });
+  })
+
+  $scope.$on('onAuth', function (event, args) {
+    vm.userData = args.data
+  })
 }
 
 },{}],9:[function(require,module,exports){
@@ -224,40 +230,49 @@ function isMobile ($mdMedia) {
 // app/services/AuthService.js
 
 /**
-  * Authentification service: in charge of the auth with Firebase
-**/
+ * Authentification service: in charge of the auth with Firebase
+ **/
 
 angular.module('planner').factory('AuthService', AuthService);
 
-function AuthService ($firebaseAuth) {
-  var AuthService = {}
+function AuthService($firebaseAuth, $rootScope) {
+    var AuthService = {}
 
-  AuthService.ref = new Firebase("https://planner31.firebaseio.com/")
-  AuthService.auth = $firebaseAuth(AuthService.ref)
+    AuthService.ref = new Firebase("https://planner31.firebaseio.com/")
+    AuthService.auth = $firebaseAuth(AuthService.ref)
 
-  AuthService.signup = function(email, password, then) {
-    this.auth.$createUser({
-        email: email,
-        password: password
-      }).then(function(userData) {
-        then(null, userData)
-      }).catch(function(error) {
-        then(error, null)
-      });
-  }
+    AuthService.signup = function(email, password, then) {
+        this.auth.$createUser({
+            email: email,
+            password: password
+        }).then(function(userData) {
+            then(null, userData)
+        }).catch(function(error) {
+            then(error, null)
+        })
+    }
 
-  AuthService.login = function(email, password, then) {
-    this.auth.$authWithPassword({
-        email: email,
-        password: password
-      }).then(function(userData) {
-        then(null, userData)
-      }).catch(function(error) {
-        then(error, null)
-      });
-  }
+    AuthService.login = function(email, password, then) {
+        this.auth.$authWithPassword({
+            email: email,
+            password: password
+        }).then(function(userData) {
+            then(null, userData)
+        }).catch(function(error) {
+            then(error, null)
+        })
+    }
 
-  return AuthService;
+    AuthService.logout = function() {
+        this.auth.$unauth()
+    }
+
+    AuthService.auth.$onAuth(function(authData) {
+        $rootScope.$broadcast('onAuth', {
+            data: authData
+        })
+    })
+    return AuthService
 }
 
 },{}],13:[function(require,module,exports){
@@ -278,7 +293,6 @@ function EventService ($firebaseArray) {
   EventService.addEvent = function (typeEvent) {
     this.events.$add({name:"event",type:typeEvent}).then(function(ref) {
       var id = ref.key()
-      console.log("added record with id " + id)
     })
   };
 

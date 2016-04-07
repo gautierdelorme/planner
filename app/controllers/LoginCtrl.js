@@ -18,17 +18,14 @@ function LoginCtrl(AuthService, NotificationsService) {
     AuthService.login(vm.user.email, vm.user.password, function(error, res) {
       if (error) {
         NotificationsService.error("Error during logging. Please verify your password.");
-      } else {
-        console.log("okay")
       }
     })
   }
+
   vm.signup = function() {
     AuthService.signup(vm.user.email, vm.user.password, function(error, res) {
       if (error) {
         NotificationsService.error("Error during signing up. Please try again.");
-      } else {
-        console.log("okay")
       }
     })
   }

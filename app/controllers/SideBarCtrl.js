@@ -6,10 +6,11 @@
 
 angular.module('planner').controller('SideBarCtrl', SideBarCtrl);
 
-function SideBarCtrl(EventService, SharedService, $scope) {
+function SideBarCtrl(EventService, SharedService, AuthService, $scope) {
   var vm = this;
   vm.title = 'PLANNER'
   vm.currentSchedule = false
+  vm.userData = null
   vm.week = [
     'Monday',
     'Tuesday',
@@ -21,7 +22,15 @@ function SideBarCtrl(EventService, SharedService, $scope) {
     EventService.addEvent(vm.currentSchedule)
   }
 
+  vm.logout = function() {
+    AuthService.logout()
+  }
+
   $scope.$on('SharedService', function () {
     vm.currentSchedule = SharedService.currentSchedule
-  });
+  })
+
+  $scope.$on('onAuth', function (event, args) {
+    vm.userData = args.data
+  })
 }

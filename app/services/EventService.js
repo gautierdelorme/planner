@@ -15,7 +15,6 @@ function EventService ($firebaseArray) {
   EventService.addEvent = function (typeEvent) {
     this.events.$add({name:"event",type:typeEvent}).then(function(ref) {
       var id = ref.key()
-      console.log("added record with id " + id)
     })
   };
 

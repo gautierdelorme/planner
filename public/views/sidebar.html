@@ -1,23 +1,23 @@
 <div ng-controller="SideBarCtrl as sideBarCtrl">
-  <md-sidenav class="site-sidenav md-sidenav-left"
-    md-component-id="left"
-    md-is-locked-open="$mdMedia('gt-sm')">
-    <md-toolbar class="md-whiteframe-z1">
-      <md-button ng-href="/" ng-click="main.toggleSideMenu()">
-        <h3>{{sideBarCtrl.title}}</h3>
-      </md-button>
-    </md-toolbar>
-    <md-list>
-      <md-list-item>
-        <md-button ng-href="/#/login" ng-click="mainCtrl.toggleSideMenu()" class="md-raised md-warn">Login</md-button>
-      </md-list-item>
-      <md-list-item>
-        <md-button ng-click="sideBarCtrl.addEvent()" class="md-raised md-primary">Add event (type
-          {{sideBarCtrl.currentSchedule}})</md-button>
-      </md-list-item>
-      <md-list-item ng-repeat="day in sideBarCtrl.week">
-        <md-button class="md-primary" ng-disabled="day == 'Monday'">{{day}}</md-button>
-      </md-list-item>
-    </md-list>
-  </md-sidenav>
+    <md-sidenav class="site-sidenav md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+        <md-toolbar class="md-whiteframe-z1">
+            <md-button ng-href="/" ng-click="main.toggleSideMenu()">
+                <h3>{{sideBarCtrl.title}}</h3>
+            </md-button>
+        </md-toolbar>
+        <md-list>
+            <md-list-item>
+                <md-button ng-if="sideBarCtrl.userData" ng-click="sideBarCtrl.logout()" class="md-raised md-warn">Logout</md-button>
+                <md-button ng-if="!sideBarCtrl.userData" ng-href="/#/login" ng-click="mainCtrl.toggleSideMenu()" class="md-raised md-warn">Login</md-button>
+            </md-list-item>
+            <md-list-item>
+                <md-button ng-click="sideBarCtrl.addEvent()" class="md-raised md-primary">Add event (type
+                    {{sideBarCtrl.currentSchedule}})
+                </md-button>
+            </md-list-item>
+            <md-list-item ng-repeat="day in sideBarCtrl.week">
+                <md-button class="md-primary" ng-disabled="day == 'Monday'">{{day}}</md-button>
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
 </div>
