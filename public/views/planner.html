@@ -1,7 +1,6 @@
 <div layout="column">
-    <md-tabs md-dynamic-height md-stretch-tabs="{{'always' |isMobile:'never'}}">
+    <md-tabs class="full-size" md-stretch-tabs="{{'always' |isMobile:'never'}}">
         <md-tab label="{{schedule.time}}" ng-id="schedule.id" ng-repeat="schedule in plannerCtrl.schedules" md-on-select="plannerCtrl.tabChanged(schedule)">
-            <md-content class="md-padding">
                 <md-list>
                     <md-subheader>Events</md-subheader>
                     <md-list-item class="md-3-line" ng-repeat="event in plannerCtrl.events | filter:{type: schedule.id}:true " ng-click="plannerCtrl.removeEvent(event)">
@@ -14,7 +13,6 @@
                         <md-divider ng-if="!$last"></md-divider>
                     </md-list-item>
                 </md-list>
-            </md-content>
         </md-tab>
     </md-tabs>
 </div>

@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html ng-app="planner">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Planner</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js"></script>
-  </head>
-  <body layout="row" ng-controller="MainCtrl as mainCtrl" ng-cloak>
-    <div ng-include src="'views/sidebar.html'"></div>
-    <div flex layout="column">
-      <md-toolbar layout="row" class="md-whiteframe-z1">
-        <md-button hide-gt-sm ng-click="mainCtrl.toggleSideMenu()">
-          <i class="material-icons md-36">dehaze</i>
-        </md-button>
-        <h3>Angular Material and Firebase app</h3>
-      </md-toolbar>
-      <div ng-view></div>
-    </div>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>Planner</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/main.js"></script>
+    </head>
+    <body layout="column" ng-controller="MainCtrl as mainCtrl" ng-cloak>
+        <div flex layout="row">
+            <div ng-include src="'views/sidebar.html'"></div>
+            <div flex layout="column">
+                <md-toolbar layout="row" class="md-whiteframe-z1">
+                    <md-button hide-gt-sm ng-click="mainCtrl.toggleSideMenu()">
+                        <i class="material-icons md-36">dehaze</i>
+                    </md-button>
+                    <h3>Angular Material and Firebase app</h3>
+                </md-toolbar>
+                <div flex class="tabs-wrapper" ng-view></div>
+            </div>
+        </div>
+        <md-toolbar layout="row" class="md-whiteframe-z1"></md-toolbar>
+    </body>
 </html>
