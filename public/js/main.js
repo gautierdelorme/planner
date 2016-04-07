@@ -18,7 +18,13 @@ require('./services')
 require('./filters')
 require('./controllers')
 
-},{"./config":3,"./controllers":8,"./filters":9,"./services":14,"angular-material":21,"angular-messages":23,"angular-route":25,"angularfire":29,"firebase":30}],2:[function(require,module,exports){
+},{"./config":4,"./controllers":9,"./filters":10,"./services":16,"angular-material":23,"angular-messages":25,"angular-route":27,"angularfire":31,"firebase":32}],2:[function(require,module,exports){
+// app/controllers/Router.js
+
+/**
+  * Router of the app
+**/
+
 angular.module('planner').config(Router);
 
 function Router($routeProvider) {
@@ -39,15 +45,32 @@ function Router($routeProvider) {
 }
 
 },{}],3:[function(require,module,exports){
+// app/controllers/Theme.js
+
+/**
+  * Config app theme
+**/
+
+angular.module('planner').config(Theme);
+
+function Theme($mdThemingProvider) {
+  $mdThemingProvider.theme("error-toast")
+  $mdThemingProvider.theme("success-toast")
+  $mdThemingProvider.theme("info-toast")
+  $mdThemingProvider.theme("warn-toast")
+}
+
+},{}],4:[function(require,module,exports){
 // app/config/index.js
 
 /**
   * Require all config
 **/
 
-require('./Router.js');
+require('./Router.js')
+require('./Theme.js')
 
-},{"./Router.js":2}],4:[function(require,module,exports){
+},{"./Router.js":2,"./Theme.js":3}],5:[function(require,module,exports){
 // app/controllers/LoginCtrl.js
 
 /**
@@ -56,7 +79,7 @@ require('./Router.js');
 
 angular.module('planner').controller('LoginCtrl', LoginCtrl);
 
-function LoginCtrl(AuthService) {
+function LoginCtrl(AuthService, NotificationsService) {
   var vm = this;
 
   vm.user = {
@@ -65,10 +88,9 @@ function LoginCtrl(AuthService) {
   }
 
   vm.login = function() {
-    console.log(vm.user.email)
     AuthService.login(vm.user.email, vm.user.password, function(error, res) {
       if (error) {
-        console.log("error on login: "+error)
+        NotificationsService.error("Error during logging. Please verify your password.");
       } else {
         console.log("okay")
       }
@@ -77,7 +99,7 @@ function LoginCtrl(AuthService) {
   vm.signup = function() {
     AuthService.signup(vm.user.email, vm.user.password, function(error, res) {
       if (error) {
-        console.log("error on signup: "+error)
+        NotificationsService.error("Error during signing up. Please try again.");
       } else {
         console.log("okay")
       }
@@ -85,7 +107,7 @@ function LoginCtrl(AuthService) {
   }
 }
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 // app/controllers/MainCtrl.js
 
 /**
@@ -101,7 +123,7 @@ function MainCtrl($mdSidenav) {
   }
 }
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 // app/controllers/PlannerCtrl.js
 
 /**
@@ -139,7 +161,7 @@ function PlannerCtrl(EventService, SharedService) {
   }
 }
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 // app/controllers/SideBarCtrl.js
 
 /**
@@ -168,7 +190,7 @@ function SideBarCtrl(EventService, SharedService, $scope) {
   });
 }
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 // app/controllers/index.js
 
 /**
@@ -180,7 +202,7 @@ require('./SideBarCtrl.js');
 require('./PlannerCtrl.js');
 require('./LoginCtrl.js');
 
-},{"./LoginCtrl.js":4,"./MainCtrl.js":5,"./PlannerCtrl.js":6,"./SideBarCtrl.js":7}],9:[function(require,module,exports){
+},{"./LoginCtrl.js":5,"./MainCtrl.js":6,"./PlannerCtrl.js":7,"./SideBarCtrl.js":8}],10:[function(require,module,exports){
 // app/filters/index.js
 
 /**
@@ -189,7 +211,7 @@ require('./LoginCtrl.js');
 
 require('./isMobile.js')
 
-},{"./isMobile.js":10}],10:[function(require,module,exports){
+},{"./isMobile.js":11}],11:[function(require,module,exports){
 angular.module('planner').filter('isMobile', isMobile);
 
 function isMobile ($mdMedia) {
@@ -198,7 +220,7 @@ function isMobile ($mdMedia) {
   }
 }
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 // app/services/AuthService.js
 
 /**
@@ -238,7 +260,7 @@ function AuthService ($firebaseAuth) {
   return AuthService;
 }
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 // app/services/EventService.js
 
 /**
@@ -266,7 +288,38 @@ function EventService ($firebaseArray) {
   return EventService;
 }
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
+// app/services/NotificationsService.js
+
+/**
+  * Notifications service: in charge of the showing notifications
+**/
+
+angular.module('planner').factory('NotificationsService', NotificationsService);
+
+function NotificationsService ($mdToast) {
+  var NotificationsService = {}
+
+  NotificationsService.error = function(message) {
+    $mdToast.show($mdToast.simple().textContent(message).theme('error-toast'));
+  }
+
+  NotificationsService.success = function(message) {
+    $mdToast.show($mdToast.simple().textContent(message).theme('success-toast'));
+  }
+
+  NotificationsService.info = function(message) {
+    $mdToast.show($mdToast.simple().textContent(message).theme('info-toast'));
+  }
+
+  NotificationsService.warn = function(message) {
+    $mdToast.show($mdToast.simple().textContent(message).theme('warn-toast'));
+  }
+
+  return NotificationsService;
+}
+
+},{}],15:[function(require,module,exports){
 // app/services/SharedService.js
 
 /**
@@ -289,7 +342,7 @@ function SharedService ($rootScope) {
   return SharedService;
 }
 
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 // app/services/index.js
 
 /**
@@ -301,15 +354,16 @@ require('./models')
 require('./EventService.js')
 require('./SharedService.js')
 require('./AuthService.js')
+require('./NotificationsService.js')
 
-},{"./AuthService.js":11,"./EventService.js":12,"./SharedService.js":13,"./models":15}],15:[function(require,module,exports){
+},{"./AuthService.js":12,"./EventService.js":13,"./NotificationsService.js":14,"./SharedService.js":15,"./models":17}],17:[function(require,module,exports){
 // app/services/models/index.js
 
 /**
   * Require all models
 **/
 
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.3
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -4426,11 +4480,11 @@ angular.module('ngAnimate', [])
 
 })(window, window.angular);
 
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 require('./angular-animate');
 module.exports = 'ngAnimate';
 
-},{"./angular-animate":16}],18:[function(require,module,exports){
+},{"./angular-animate":18}],20:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.3
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -4830,11 +4884,11 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 })(window, window.angular);
 
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 require('./angular-aria');
 module.exports = 'ngAria';
 
-},{"./angular-aria":18}],20:[function(require,module,exports){
+},{"./angular-aria":20}],22:[function(require,module,exports){
 /*!
  * Angular Material Design
  * https://github.com/angular/material
@@ -29384,7 +29438,7 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 
 
 })(window, window.angular);;window.ngMaterial={version:{full: "1.0.6"}};
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 // Should already be required, here for clarity
 require('angular');
 
@@ -29398,7 +29452,7 @@ require('./angular-material');
 // Export namespace
 module.exports = 'ngMaterial';
 
-},{"./angular-material":20,"angular":27,"angular-animate":17,"angular-aria":19}],22:[function(require,module,exports){
+},{"./angular-material":22,"angular":29,"angular-animate":19,"angular-aria":21}],24:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.3
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -30122,11 +30176,11 @@ function ngMessageDirectiveFactory() {
 
 })(window, window.angular);
 
-},{}],23:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 require('./angular-messages');
 module.exports = 'ngMessages';
 
-},{"./angular-messages":22}],24:[function(require,module,exports){
+},{"./angular-messages":24}],26:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.3
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -31150,11 +31204,11 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 require('./angular-route');
 module.exports = 'ngRoute';
 
-},{"./angular-route":24}],26:[function(require,module,exports){
+},{"./angular-route":26}],28:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.3
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -61869,11 +61923,11 @@ $provide.value("$locale", {
 })(window, document);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":26}],28:[function(require,module,exports){
+},{"./angular":28}],30:[function(require,module,exports){
 /*!
  * AngularFire is the officially supported AngularJS binding for Firebase. Firebase
  * is a full backend so you don't need servers to build your Angular app. AngularFire
@@ -64213,11 +64267,11 @@ if ( typeof Object.getPrototypeOf !== "function" ) {
     }
 })();
 
-},{}],29:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 require('./dist/angularfire');
 module.exports = 'firebase';
 
-},{"./dist/angularfire":28}],30:[function(require,module,exports){
+},{"./dist/angularfire":30}],32:[function(require,module,exports){
 /*! @license Firebase v2.4.2
     License: https://www.firebase.com/terms/terms-of-service.html */
 (function() {var h,n=this;function p(a){return void 0!==a}function aa(){}function ba(a){a.yb=function(){return a.zf?a.zf:a.zf=new a}}

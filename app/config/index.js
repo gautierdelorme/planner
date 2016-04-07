@@ -4,4 +4,5 @@
   * Require all config
 **/
 
-require('./Router.js');
+require('./Router.js')
+require('./Theme.js')

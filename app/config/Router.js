@@ -1,3 +1,9 @@
+// app/controllers/Router.js
+
+/**
+  * Router of the app
+**/
+
 angular.module('planner').config(Router);
 
 function Router($routeProvider) {
