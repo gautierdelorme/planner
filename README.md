@@ -11,7 +11,7 @@ Developed with:
 - Node.js `v4.4.1`
 - npm `v2.14.20`
 - Gulp CLI `v1.2.1` (if you don't have it run `npm install --global gulp-cli`)
-
+- Sass `v3.4.22` (if you don't have it got here [http://sass-lang.com/install](http://sass-lang.com/install))
 
 ### Clone it !
 
@@ -27,6 +27,11 @@ Be sure to have previous requirements installed on your computer.
 
 
 ## Explanations
+
+- Calling order
+  - app.config()
+  - app.run()
+  - app.controllers()
 
 - Gulp automates tasks like starting the server, browserify js files, watch changes automatically...
 - Browserify allows us to use `require()` in our js files like in Node.js but for front-end development. Because of Gulp browserify takes all the required files in the `app/` directory and concatenate them into a single file understandable by browsers in `public/js/`.
