@@ -29,7 +29,7 @@ function LoginCtrl(AuthService, NotificationsService, $location) {
       if (error) {
         NotificationsService.error("Error during signing up. Please try again.");
       } else {
-        $location.path('/')
+        vm.login(vm.user.email, vm.user.password)
       }
     })
   }

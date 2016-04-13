@@ -5,21 +5,19 @@
                 <h3>{{sideBarCtrl.title}}</h3>
             </md-button>
         </md-toolbar>
+        <md-list-item>
+            <md-button ng-if="sideBarCtrl.userData" ng-click="sideBarCtrl.logout()" class="md-raised md-warn">Logout</md-button>
+            <md-button ng-if="!sideBarCtrl.userData" ng-href="/#/login" ng-click="mainCtrl.toggleSideMenu()" class="md-raised md-warn">Login</md-button>
+        </md-list-item>
+        <md-list-item ng-if="sideBarCtrl.userData">
+            <md-button ng-click="sideBarCtrl.addEvent()" class="md-raised md-primary">Add event (type
+                {{sideBarCtrl.currentSchedule}})
+            </md-button>
+        </md-list-item>
         <md-content>
-            <md-list>
-                <md-list-item>
-                    <md-button ng-if="sideBarCtrl.userData" ng-click="sideBarCtrl.logout()" class="md-raised md-warn">Logout</md-button>
-                    <md-button ng-if="!sideBarCtrl.userData" ng-href="/#/login" ng-click="mainCtrl.toggleSideMenu()" class="md-raised md-warn">Login</md-button>
-                </md-list-item>
-                <md-list-item ng-if="sideBarCtrl.userData">
-                    <md-button ng-click="sideBarCtrl.addEvent()" class="md-raised md-primary">Add event (type
-                        {{sideBarCtrl.currentSchedule}})
-                    </md-button>
-                </md-list-item>
-                <md-list-item ng-repeat="day in sideBarCtrl.week">
-                    <md-button class="md-primary" ng-disabled="day == 'Monday'">{{day}}</md-button>
-                </md-list-item>
-            </md-list>
+            <md-list-item ng-repeat="day in sideBarCtrl.week">
+                <md-button class="md-primary" ng-disabled="day == 'Monday'">{{day}}</md-button>
+            </md-list-item>
         </md-content>
     </md-sidenav>
 </div>

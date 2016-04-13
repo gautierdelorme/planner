@@ -13,6 +13,17 @@ function SideBarCtrl(EventService, SharedService, AuthService, $scope, $location
   vm.userData = null
   vm.week = [
     'Monday',
+    'Monday1',
+    'Monday2',
+    'Monday3',
+    'Monday4',
+    'Monday5',
+    'Monday6',
+    'Monday7',
+    'Monday8',
+    'Monday9',
+    'Monday10',
+    'Monday11',
     'Tuesday',
     'Wednesday',
     'Thursday',
