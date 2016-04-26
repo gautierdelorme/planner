@@ -1,5 +1,16 @@
 # planner
 
+**########################################################################################**
+**########################################################################################**
+
+#### [Ultimate AngularJS Component Oriented Design Guide available here !!](http://gautierdelorme.com/2016/04/20/ultimate-angularjs-component-oriented-design-guide.html)
+
+**/!\ This project is no longer maintained. Read the guide and see [this project](https://github.com/ifac2017/webapp) instead.**
+
+**########################################################################################**
+**########################################################################################**
+
+
 **planner** is a demo front-end web app using [Angular Material](https://github.com/angular/material) and [Firebase](https://www.firebase.com/). The purpose of this project is to understand how setup quickly and easily an Angular project with a good architecture.
 
 ## Test the app
